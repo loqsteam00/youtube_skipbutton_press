@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Skip Button Presser",
+  "version": "4.0",
+  "description": "Presses the skip button on YouTube ads automatically",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "debugger",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*"
+  ],
+  "action": {
+    "default_title": "Toggle Skip Button",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "bridge.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
